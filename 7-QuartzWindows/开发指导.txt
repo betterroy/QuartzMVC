@@ -1,0 +1,12 @@
+1、NuGet获取的程序包
+Install-Package Quartz
+Install-Package Common.Logging.Log4Net1211
+Install-Package log4net
+Install-Package Topshelf
+Install-Package Topshelf.Log4Net
+
+2、Windows 服务安装命令
+
+--命令提示符（管理员）
+安装服务 C:\..(exe路径)>7-QuartzWindows.exe install
+卸载服务 C:\..(exe路径)>7-QuartzWindows.exe uninstall

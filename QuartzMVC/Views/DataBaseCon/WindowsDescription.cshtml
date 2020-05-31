@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "WindowsDescription";
+
+}
+<link href="~/Content/BeginnerAdmin/plugins/layui/css/layui.css" rel="stylesheet" />
+<script src="~/Content/BeginnerAdmin/plugins/layui/layui.js"></script>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+    <legend>quartz Windows服务配置</legend>
+</fieldset>
+
+<fieldset class="layui-elem-field">
+    <legend>1、添加NuGet获取的程序包（这一步仅限于自己开发，直接下载代码的可直接跳过这一步）</legend>
+    <div class="layui-field-box">
+        Install-Package Quartz<br />
+        Install-Package Common.Logging.Log4Net1211<br />
+        Install-Package log4net<br />
+        Install-Package Topshelf<br />
+        Install-Package Topshelf.Log4Net<br />
+    </div>
+</fieldset>
+<fieldset class="layui-elem-field">
+    <legend>2、Windows 服务安装命令</legend>
+    <div class="layui-field-box">
+        打开cmd，找到你quartz windows服务 项目的路径<br/>
+        安装服务命令 C:\..(exe路径)>7-QuartzWindows.exe install<br/>
+        删除服务命令 C:\..(exe路径)>7-QuartzWindows.exe uninstall<br/>
+    </div>
+</fieldset>
+<fieldset class="layui-elem-field">
+    <legend>3、安装好了，你会看到如下图服务</legend>
+    <div class="layui-field-box">
+        <img src="~/Content/BeginnerAdmin/images/dis.png" />
+    </div>
+</fieldset>

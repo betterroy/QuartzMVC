@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+    <job>
+        <name>FirstJob</name> <!--QuartJob.Job.FirstJob  是任务名-->
+        <group>THGroup</group>
+        <description>任务描述：我的第一个job任务</description>
+        <job-type>QuartzWindows.Job.FirstJob,QuartzWindows</job-type>   <!--QuartJob.Job.FirstJob  是任务所在的位置-->
+        <durable>true</durable>
+        <recover>false</recover>
+    </job>
+
+    <trigger>
+      <simple>
+        <name>触发器名称</name>
+        <group>触发器分组</group>
+        <description>触发器描述</description>
+        <job-name>FirstJob</job-name>   <!--必须和作业名保持一致-->
+        <job-group>THGroup</job-group>   <!--必须和作业分组保持一致-->
+        <misfire-instruction>SmartPolicy</misfire-instruction>
+        <repeat-count>-1</repeat-count>
+        <repeat-interval>10000</repeat-interval> <!--10秒执行一次-->
+        <!--为cron表达式-->
+        <!--<start-time>2015-11-26T22:19:00+08:00</start-time>
+        <cron-expression>0/3 * * * * ?</cron-expression>-->
+      </simple>
+    </trigger>
+  </schedule>
+</job-scheduling-data>

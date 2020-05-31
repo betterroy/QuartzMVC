@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{42517E49-EB3E-4630-9967-85CD2B39F068}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuartzMVC</RootNamespace>
+    <AssemblyName>QuartzMVC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Quartz">
+      <HintPath>..\packages\Quartz.2.5.0\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\DataBaseConController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuartzController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Job\AddUserJob.cs" />
+    <Compile Include="Job\CronJob.cs" />
+    <Compile Include="Job\FirstJob.cs" />
+    <Compile Include="Job\Tool\PublicJob.cs" />
+    <Compile Include="Job\Tool\QuartzEnum.cs" />
+    <Compile Include="Job\Tool\StdSchedulerManager.cs" />
+    <Compile Include="Models\EnumberEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicTool\PublicTool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\BeginnerAdmin\images\dis.png" />
+    <Content Include="Content\BeginnerAdmin\images\tx.png" />
+    <Content Include="Content\Cron\cron.js" />
+    <Content Include="Content\Cron\easyui.css" />
+    <Content Include="Content\Cron\icon.css" />
+    <Content Include="Content\Cron\images\spinner_arrows.png" />
+    <Content Include="Content\Cron\jquery.easyui.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\BeginnerAdmin\css\begtable.css" />
+    <Content Include="Content\BeginnerAdmin\css\btable.css" />
+    <Content Include="Content\BeginnerAdmin\css\global.css" />
+    <Content Include="Content\BeginnerAdmin\css\layout.css" />
+    <Content Include="Content\BeginnerAdmin\css\login.css" />
+    <Content Include="Content\BeginnerAdmin\css\main.css" />
+    <Content Include="Content\BeginnerAdmin\css\table.css" />
+    <Content Include="Content\BeginnerAdmin\datas\area_data.js" />
+    <Content Include="Content\BeginnerAdmin\datas\nav.js" />
+    <Content Include="Content\BeginnerAdmin\images\logo-1.png" />
+    <Content Include="Content\BeginnerAdmin\index.html" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\layui.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\layui.mobile.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\code.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\aero%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\aero.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\aero.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\blue%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\blue.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\blue.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\flat%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\flat.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\flat.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\green%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\green.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\green.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\grey%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\grey.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\grey.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\orange%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\orange.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\orange.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\pink%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\pink.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\pink.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\purple%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\purple.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\purple.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\red%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\red.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\red.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\yellow%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\yellow.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\yellow.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\flat\_all.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\futurico\futurico%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\futurico\futurico.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\futurico\futurico.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\icheck.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\aero.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\blue.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\green.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\grey.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\line%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\line.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\line.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\orange.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\pink.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\purple.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\red.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\yellow.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\line\_all.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\aero%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\aero.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\aero.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\blue%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\blue.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\blue.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\green%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\green.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\green.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\grey%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\grey.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\grey.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\minimal%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\minimal.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\minimal.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\orange%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\orange.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\orange.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\pink%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\pink.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\pink.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\purple%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\purple.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\purple.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\red%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\red.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\red.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\yellow%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\yellow.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\yellow.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\minimal\_all.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\polaris\polaris%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\polaris\polaris.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\polaris\polaris.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\aero%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\aero.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\aero.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\blue%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\blue.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\blue.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\green%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\green.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\green.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\grey%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\grey.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\grey.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\orange%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\orange.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\orange.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\pink%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\pink.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\pink.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\purple%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\purple.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\purple.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\red%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\red.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\red.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\square%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\square.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\square.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\yellow%402x.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\yellow.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\yellow.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\icheck\square\_all.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\laydate\icon.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\laydate\laydate.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\icon.png" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\layer.css" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\font\iconfont.svg" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\0.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\1.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\10.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\11.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\12.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\13.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\14.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\15.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\16.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\17.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\18.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\19.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\2.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\20.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\21.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\22.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\23.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\24.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\25.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\26.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\27.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\28.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\29.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\3.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\30.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\31.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\32.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\33.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\34.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\35.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\36.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\37.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\38.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\39.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\4.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\40.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\41.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\42.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\43.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\44.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\45.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\46.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\47.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\48.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\49.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\5.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\50.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\51.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\52.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\53.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\54.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\55.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\56.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\57.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\58.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\59.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\6.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\60.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\61.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\62.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\63.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\64.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\65.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\66.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\67.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\68.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\69.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\7.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\70.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\71.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\8.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\images\face\9.gif" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\layui.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\dest\layui.all.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\dest\layui.mod.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\lib\jquery.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\code.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\element.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\flow.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\form.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\jquery.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\laydate.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\layedit.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\layer.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\laypage.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\laytpl.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\mobile.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\tree.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\upload.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\lay\modules\util.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\modules\icheck.js" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\modules\pjax.js" />
+    <Content Include="Js\area.js" />
+    <Content Include="Js\baajax.js" />
+    <Content Include="Js\begtable.js" />
+    <Content Include="Js\btable.js" />
+    <Content Include="Js\city.js" />
+    <Content Include="Js\common.js" />
+    <Content Include="Js\index.js" />
+    <Content Include="Js\layout.js" />
+    <Content Include="Js\lib\jquery-3.2.1\jquery-3.2.1.js" />
+    <Content Include="Js\lib\jquery-3.2.1\jquery-3.2.1.min.js" />
+    <Content Include="Js\lib\layer\layer.js" />
+    <Content Include="Js\lib\layer\mobile\layer.js" />
+    <Content Include="Js\lib\layer\mobile\need\layer.css" />
+    <Content Include="Js\lib\layer\skin\default\icon-ext.png" />
+    <Content Include="Js\lib\layer\skin\default\icon.png" />
+    <Content Include="Js\lib\layer\skin\default\layer.css" />
+    <Content Include="Js\lib\layer\skin\default\loading-0.gif" />
+    <Content Include="Js\lib\layer\skin\default\loading-1.gif" />
+    <Content Include="Js\lib\layer\skin\default\loading-2.gif" />
+    <Content Include="Js\lib\layer\skin\layer.css" />
+    <Content Include="Js\lib\layer\skin\moon\default.png" />
+    <Content Include="Js\lib\layer\skin\moon\style.css" />
+    <Content Include="Js\lib\tool\Public.js" />
+    <Content Include="Js\navbar.js" />
+    <Content Include="Js\paging.js" />
+    <Content Include="Js\tab.js" />
+    <Content Include="Js\validator.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\DataBaseCon\StoreOrPersistenceOrCluster.cshtml" />
+    <Content Include="Views\DataBaseCon\AddTask.cshtml" />
+    <Content Include="Views\DataBaseCon\EditTask.cshtml" />
+    <Content Include="Views\DataBaseCon\WindowsDescription.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\BeginnerAdmin\datas\btable_data.json" />
+    <Content Include="Content\BeginnerAdmin\datas\laytpl_laypage_data.json" />
+    <Content Include="Content\BeginnerAdmin\datas\nav.json" />
+    <Content Include="Content\BeginnerAdmin\datas\nav_content.json" />
+    <Content Include="Content\BeginnerAdmin\datas\nav_member.json" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\BeginnerAdmin\plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\font\iconfont.eot" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\font\iconfont.ttf" />
+    <Content Include="Content\BeginnerAdmin\plugins\layui\font\iconfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Main.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\FirstQuartz.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2-Business\2-Business.csproj">
+      <Project>{f21a1296-c049-4bc6-b9b9-7b69bc57f29b}</Project>
+      <Name>2-Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3-DataAccess\3-DataAccess.csproj">
+      <Project>{3FB50111-9937-4E66-8AC9-589F387B150F}</Project>
+      <Name>3-DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\4-Model\4-Model.csproj">
+      <Project>{911baa09-4f2b-487a-8c60-d4799933a1aa}</Project>
+      <Name>4-Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tool\5-Tool.csproj">
+      <Project>{a474472e-186a-4f59-b43a-a402d2ed7212}</Project>
+      <Name>5-Tool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Z_DataBase\6-DataBase.csproj">
+      <Project>{03becd70-56ef-4116-a07b-9b094a8af713}</Project>
+      <Name>6-DataBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Quartz\CronUse.cshtml" />
+    <Content Include="Views\Quartz\SetCron.cshtml" />
+    <Content Include="Views\DataBaseCon\DataBase.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6941</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6941/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

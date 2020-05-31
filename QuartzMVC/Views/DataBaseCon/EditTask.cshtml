@@ -1,0 +1,118 @@
+﻿@using QuartzMVC.PublicTool
+@{
+    ViewBag.Title = "添加任务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/BeginnerAdmin/plugins/layui/css/layui.css" rel="stylesheet" />
+<script src="~/Content/BeginnerAdmin/plugins/layui/layui.js"></script>
+<script src="~/Js/lib/jquery-3.2.1/jquery-3.2.1.js"></script>
+<script src="~/Js/lib/tool/Public.js"></script>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>作业设置表单</legend>
+</fieldset>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">作业分组</label>
+        <div class="layui-input-block">
+            <input type="text" name="JobGroup" lay-verify="yz" autocomplete="off" placeholder="请输作业分组名" class="layui-input" value="@Model.JobGroup">
+        </div>
+        <br />
+        <label class="layui-form-label">作业名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="JobName" lay-verify="yz" autocomplete="off" placeholder="请输作业名称" class="layui-input" value="@Model.JobName">
+        </div>
+        <br />
+        <label class="layui-form-label">作业描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="JobDescription" lay-verify="yz" autocomplete="off" placeholder="请输作业描述" class="layui-input" value="@Model.JobDescription">
+        </div>
+        <br />
+        <label class="layui-form-label">触发器名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="TriggerName" lay-verify="yz" autocomplete="off" placeholder="请输触发器名称" class="layui-input" value="@Model.TriggerName">
+        </div>
+        <br />
+        <label class="layui-form-label">触发器分组</label>
+        <div class="layui-input-block">
+            <input type="text" name="TriggerGroupName" lay-verify="yz" autocomplete="off" placeholder="请输触发器分组名" class="layui-input" value="@Model.TriggerGroupName">
+        </div>
+        <br />
+        <label class="layui-form-label">触发器类别</label>
+        <div class="layui-input-block">
+            @*<input type="text" name="TriggerType" lay-verify="yz" autocomplete="off" placeholder="请输触发器类别" class="layui-input" value="@Model.TriggerType">*@
+            @PublicTool.IndustryDropDownList(Html, "TriggerType",new{} , @Model.TriggerType, false)<br />
+        </div>
+        <br />
+        <label class="layui-form-label">触发器状态</label>
+        <div class="layui-input-block">
+            <input type="text" name="TriggerState" lay-verify="yz" autocomplete="off" placeholder="请输触发器状态" class="layui-input" value="@Model.TriggerState">
+        </div>
+    </div>
+    <br />
+    <div class="layui-inline">
+        <label class="layui-form-label">执行时间</label>
+        <div class="layui-input-inline">
+            <input type="text" id="Cron" name="QuartzTime" onclick="SetCron()" required lay-verify="required" placeholder="点击设置Cron表达式" autocomplete="off" class="layui-input" value="@Model.QuartzTime">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+
+            <br />
+            <button class="layui-btn" lay-submit="" lay-filter="submit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    function SetCron() {
+        layer.open({
+            type: 2,
+            title: "设置Cron表达式",
+            area: ['850px', '620px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '/Quartz/SetCron',
+            success: function () {
+
+            }
+        });
+    }
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form();
+
+        //自定义验证规则
+        form.verify({
+            yz: function(value) {
+                if (value.length < 1) {
+                    return '标题至少得1个字符啊';
+                }
+            }
+        });
+
+        var id = getQueryString("id");
+        //监听提交
+        form.on('submit(submit)', function (data) {
+            $.ajax({
+                url: '/DataBaseCon/AddJobQuartz',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    Id: id, JobGroup: data.field.JobGroup, JobName: data.field.JobName, JobDescription: data.field.JobDescription, TriggerName: data.field.TriggerName,
+                    TriggerGroupName: data.field.TriggerGroupName, TriggerType: data.field.TriggerType, TriggerState: data.field.TriggerState, QuartzTime: data.field.QuartzTime
+                },
+                success: function () {
+
+                }
+
+            });
+            var index = parent.layer.getFrameIndex(window.name); // 得到索引
+            parent.layer.close(index);
+            parent.alertMsy();
+        });
+    });
+</script>

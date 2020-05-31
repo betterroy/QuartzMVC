@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "第一个简单任务";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/BeginnerAdmin/plugins/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Content/BeginnerAdmin/css/global.css" rel="stylesheet" />
+<script src="~/Js/lib/jquery-3.2.1/jquery-3.2.1.js"></script>
+<script src="~/Js/lib/layer/layer.js"></script>
+<script src="~/Js/lib/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+<fieldset class="layui-elem-field site-demo-button">
+    <legend>任务控制区</legend>
+    <div>
+        <button id="OpenTask" class="layui-btn">开启任务</button>
+        <button id="CloseTask" class="layui-btn layui-btn-danger">关闭任务</button>
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#OpenTask").click(function() {
+            $.ajax({
+                url: "FirstQuartzs",
+                type: 'post',
+                data: {},
+                dataType: "json",
+                async: "false",
+                success: function (data) {
+                    if (data.ResultSign === 0) {
+                        layer.alert("开启成功");
+                    } else {
+                        layer.alert("开启失败--" + "错误信息：" + data.Message);
+                    }
+                }
+            });
+        });
+        $("#CloseTask").click(function() {
+            $.ajax({   
+                url: "CloseTask",
+                type: 'post',
+                data: {},
+                dataType: "json",
+                async: "false",
+                success: function (data) {
+                    if (data.ResultSign === 0) {
+                        layer.alert("关闭成功");
+                    } else {
+                        layer.alert("关闭失败--" + "错误信息：" + data.Message);
+                    }
+                }
+            });
+        });
+    });
+</script>

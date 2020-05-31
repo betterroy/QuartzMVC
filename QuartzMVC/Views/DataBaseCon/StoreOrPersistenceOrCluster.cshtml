@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "存储与持久化和集群";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="~/Content/BeginnerAdmin/plugins/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/BeginnerAdmin/css/global.css" rel="stylesheet" />
+    <link href="~/Content/BeginnerAdmin/plugins/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+    <script src="~/Js/lib/jquery-3.2.1/jquery-3.2.1.js"></script>
+    <script src="~/Js/lib/layer/layer.js"></script>
+    <script src="~/Content/BeginnerAdmin/plugins/layui/layui.js"></script>
+    <script src="~/Js/lib/tool/Public.js"></script>
+</head>
+<body>
+    <fieldset class="layui-elem-field site-demo-button">
+        <legend>任务控制区</legend>
+        <div>
+            <button id="AddTask" class="layui-btn layui-btn-warm">新增任务</button>
+            <button id="EditTask" class="layui-btn layui-btn-normal">编辑任务</button>
+            <button id="OpenTask" class="layui-btn">开启任务</button>
+            <button id="CloseTask" class="layui-btn layui-btn-danger">关闭任务</button>
+            <button id="" class="layui-btn layui-btn-disabled">开启所有</button>
+            <button id="" class="layui-btn layui-btn-disabled">关闭所有</button>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>所有作业信息</legend>
+    </fieldset>
+<div class="layui-form">
+    <table class="layui-table">
+        <colgroup></colgroup>
+        <thead>
+        <tr>
+            <th width="10px">选择</th>
+            <th>作业分组</th>
+            <th>作业名称</th>
+            <th>作业描述</th>
+            <th>触发器名称</th>
+            <th>触发器分组</th>
+            <th>触发器类别</th>
+            <th>触发器状态</th>
+            <td>作业状态</td>
+            <th>添加人</th>
+            <th>添加时间</th>
+            <th>运行时间周期</th>
+            <th>操作</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="10px"><input type="radio" name="id" value="@item.Id" title=" "> </td>
+                <td>@item.JobGroup</td>
+                <td>@item.JobName</td>
+                <td>@item.JobDescription</td>
+                <td>@item.TriggerName</td>
+                <td>@item.TriggerGroupName</td>
+                <td>@item.TriggerType</td>
+                <td>@item.TriggerState</td>
+                <td>
+                    <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+                </td>
+                <td>@item.UserName</td>
+                <td>@item.Addtime</td>
+                <td>@item.QuartzTime</td>
+                <td><button onclick="window.location.href = '#'" class="layui-btn layui-btn-primary layui-btn-mini"><i class="fa fa-th-list"></i>接口</button>
+                    <button onclick="window.location.href = '#'" class="layui-btn layui-btn-disabled layui-btn-mini"><i class="fa fa-hacker-news"></i>新增</button>
+                    <button onclick="showUrl('编辑作业', '/DataBaseCon/EditTask?id=@item.Id', 1100, 750)" class="layui-btn layui-btn-warm layui-btn-mini"><i class="fa fa-edit"></i>编辑</button>
+                    <button onclick="deleteId('@item.Id', '/DataBaseCon/Delete')" class="layui-btn layui-btn-danger layui-btn-mini"><i class="fa fa-trash-o"></i>删除</button>
+                    <button onclick="window.location.href = '#'" class="layui-btn layui-btn-mini"><i class="fa fa-search"></i>详情</button>
+                    <button onclick="window.location.href = '#'" class="layui-btn layui-btn-normal layui-btn-mini"><i class="fa fa-file-text-o"></i>文档</button>
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript">
+    
+    // 新增/编辑之后的提示
+    function alertMsy() {
+        layer.msg("成功", {
+            time: 2000 //20s后自动关闭
+            , icon: 1
+        });
+        setTimeout('myrefresh()', 800); //隔一秒刷新
+    }
+
+    layui.use('form', function () {
+        var $ = layui.jquery, form = layui.form();
+        //全选(复选框)
+        form.on('checkbox(allChoose)', function (data) {
+            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+            child.each(function (index, item) {
+                item.checked = data.elem.checked;
+            });
+            form.render('checkbox');
+        });
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：ON|OFF 可以自定义', data.othis);
+        });
+    });
+
+    //新增任务
+    $("#AddTask").click(function () {
+        layer.open({
+            type: 2,
+            title: "新增作业",
+            area: ['1100px', '750px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '/DataBaseCon/AddTask',
+            success: function (layero, index) {
+                //layer.full(index);  //打开时最大化
+            }
+        });
+    });
+
+    // 编辑任务
+    $("#EditTask").click(function () {
+        // 获取复选框的值
+        //var value = $("input:checkbox:checked").val();
+
+        // 获取单选框的值
+        var value = $('input:radio:checked').val();
+        if (typeof (value) !== "undefined") {
+            layer.open({
+                type: 2,
+                title: "编辑作业",
+                area: ['1100px', '750px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '/DataBaseCon/EditTask?id=' + value,
+                success: function (layero, index) {
+                    // layer.full(index);
+                }
+            });
+        } else {
+            layer.msg("请选择操作记录");
+        }
+        // layer.full(index);
+    });
+
+    //删除任务
+    function deleteId(id, url) {
+        layer.confirm('你确定要删除该条记录？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                data: { id: id },
+                success: function () {
+                    //
+                    layer.msg('删除成功', { icon: 1 });
+                    setTimeout('myrefresh()', 800); //隔一秒刷新
+                }
+            });
+        });
+    }
+
+    //开启任务
+    $("#OpenTask").click(function() {
+        var value = $('input:radio:checked').val();
+        if (typeof (value) !== "undefined") {
+            $.ajax({
+                url: '/DataBaseCon/OpenTask',
+                type: 'post',
+                dataType: 'json',
+                data: { id: value },
+                success:function(data) {
+                    if (data.ResultSign === 0) {
+                        layer.alert(data.Message);
+                    } else {
+                        layer.alert("错误信息：" + data.Message);
+                    }
+                }
+            });
+        } else {
+            layer.msg("请选择操作记录");
+        }
+    });
+    $("#CloseTask").click(function() {
+        var value = $('input:radio:checked').val();
+        if (typeof (value) !== "undefined") {
+            $.ajax({
+                url: '/DataBaseCon/CloseTask',
+                type: 'post',
+                dataType: 'json',
+                data: { id: value },
+                success: function (data) {
+                    if (data.ResultSign === 0) {
+                        layer.alert(data.Message);
+                    } else {
+                        layer.alert("错误信息：" + data.Message);
+                    }
+                }
+            });
+        } else {
+            layer.msg("请选择操作记录");
+        }
+    });
+
+</script>
+
+</body>
+</html>
